@@ -1,0 +1,754 @@
+<!-- Subscribe Tamzidan Madiyin di YouTube -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Portfolio Website</title>
+
+    <!-- Font Awesome 6.5.1 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- AOS CSS CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
+
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            background-image: url("./img/background.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Navigation Styles */
+        nav {
+            width: 100%;
+            height: 10vh;
+            position: relative;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #38bdf8;
+            text-shadow: 0 0 10px #38bdf8;
+        }
+
+        .hamburg,
+        .cancel {
+            cursor: pointer;
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            color: white;
+            display: none;
+            font-size: clamp(2.5rem, 0.5rem + 5vw, 3rem);
+        }
+
+        .nav-container .links {
+            display: flex;
+        }
+
+        .nav-container .links a {
+            font-size: 1.2rem;
+            color: white;
+            margin: 0 20px;
+            text-decoration: none;
+            font-weight: 550;
+            transition: 0.3s linear;
+        }
+
+        .nav-container .links a:hover {
+            color: #38bdf8;
+            border-bottom: 2px solid #38bdf8;
+        }
+
+        .nav-container .links .active a,
+        .nav-container .links .active {
+            color: #38bdf8;
+            border-bottom: 2px solid #38bdf8;
+        }
+
+        /* Dropdown Menu Styles */
+        .dropdown {
+            z-index: 1000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            transform: translateY(-500px);
+            width: 100%;
+            height: auto;
+            backdrop-filter: blur(8px) brightness(40%);
+            background: rgba(15, 23, 42, 0.9);
+            box-shadow: 0 0 20px black;
+            transition: 0.3s ease-in-out;
+        }
+
+        .dropdown .links a {
+            display: flex;
+            color: white;
+            text-decoration: none;
+            padding: 15px 0;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: 550;
+            transition: 0.2s linear;
+        }
+
+        .dropdown .links a:hover {
+            background-color: #38bdf8;
+            color: #0f172a;
+        }
+
+        .dropdown .links a.active {
+            background-color: rgba(56, 189, 248, 0.25);
+            color: #38bdf8;
+            font-weight: 600;
+        }
+
+        /* Projects Section Styles */
+        .projects-container {
+            width: 100%;
+            min-height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem 2rem 5rem 2rem;
+        }
+
+        .projects-content {
+            width: 85%;
+            max-width: 1250px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            color: white;
+        }
+
+        .projects-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .projects-header h1 {
+            font-size: 2.5rem;
+            color: #38bdf8;
+            text-shadow: 0 0 10px #38bdf8;
+            margin-bottom: 0.75rem;
+        }
+
+        .projects-header .subtitle {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            font-weight: 300;
+            line-height: 1.5;
+        }
+
+        /* Filter Buttons Styles */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            background: rgba(56, 189, 248, 0.1);
+            color: #94a3b8;
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 30px;
+            padding: 9px 24px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .filter-btn:hover {
+            color: white;
+            border-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.2);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+        }
+
+        .filter-btn.active {
+            background: #0284c7;
+            color: white;
+            border-color: #38bdf8;
+            box-shadow: 0 0 18px rgba(56, 189, 248, 0.4);
+        }
+
+        /* Projects Grid Styles */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(56, 189, 248, 0.3);
+            border-color: rgba(56, 189, 248, 0.45);
+        }
+
+        .project-card.hide {
+            display: none !important;
+        }
+
+        /* Gradient Placeholder Image Styles */
+        .project-image {
+            width: 100%;
+            height: 180px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image i {
+            font-size: 3.5rem;
+            color: #38bdf8;
+            text-shadow: 0 0 18px rgba(56, 189, 248, 0.6);
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover .project-image i {
+            transform: scale(1.12);
+        }
+
+        .gradient-ecommerce {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.25) 0%, rgba(2, 132, 199, 0.45) 50%, rgba(15, 23, 42, 0.9) 100%);
+        }
+
+        .gradient-task {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.3) 0%, rgba(3, 105, 161, 0.5) 50%, rgba(15, 23, 42, 0.9) 100%);
+        }
+
+        .gradient-portfolio {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.35) 0%, rgba(7, 89, 133, 0.55) 50%, rgba(15, 23, 42, 0.9) 100%);
+        }
+
+        .gradient-restaurant {
+            background: linear-gradient(135deg, rgba(2, 132, 199, 0.3) 0%, rgba(15, 23, 42, 0.6) 50%, rgba(12, 74, 110, 0.9) 100%);
+        }
+
+        .gradient-weather {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.3) 0%, rgba(2, 132, 199, 0.55) 50%, rgba(15, 23, 42, 0.9) 100%);
+        }
+
+        .gradient-blog {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.25) 0%, rgba(3, 105, 161, 0.55) 50%, rgba(15, 23, 42, 0.95) 100%);
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: rgba(15, 23, 42, 0.75);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            backdrop-filter: blur(5px);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Project Body Styles */
+        .project-body {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .project-title {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.6rem;
+        }
+
+        .project-description {
+            color: #94a3b8;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+            flex-grow: 1;
+        }
+
+        /* Tech Stack Badges */
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-badge {
+            background: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 20px;
+            padding: 3px 10px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        /* Action Buttons */
+        .project-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .btn-primary {
+            flex: 1;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            background-color: #0284c7;
+            color: white;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #38bdf8;
+            color: #0f172a;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+        }
+
+        .btn-secondary {
+            flex: 1;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            background-color: transparent;
+            color: #38bdf8;
+            border: 1.5px solid #38bdf8;
+            padding: 8.5px 14px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(56, 189, 248, 0.15);
+            color: white;
+            border-color: #38bdf8;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+        }
+
+        /* Responsive Media Queries */
+        @media (max-width: 884px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            nav .logo {
+                position: absolute;
+                top: 16px;
+                left: 15px;
+                font-size: 1.5rem;
+            }
+
+            .nav-container .links {
+                display: none;
+            }
+
+            .hamburg,
+            .cancel {
+                display: block;
+            }
+
+            .projects-container {
+                padding: 1.5rem 1rem 3rem 1rem;
+            }
+
+            .projects-content {
+                width: 92%;
+                padding: 2rem 1.5rem;
+            }
+
+            .projects-header h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-content {
+                width: 95%;
+                padding: 1.5rem 1rem;
+            }
+        }
+
+        @media (max-width: 440px) {
+            .projects-container {
+                padding: 1rem 0.5rem 2.5rem 0.5rem;
+            }
+
+            .projects-content {
+                width: 98%;
+                padding: 1.25rem 0.75rem;
+                border-radius: 14px;
+            }
+
+            .projects-header h1 {
+                font-size: 1.75rem;
+            }
+
+            .projects-header .subtitle {
+                font-size: 0.88rem;
+            }
+
+            .filter-container {
+                gap: 6px;
+                margin-bottom: 1.75rem;
+            }
+
+            .filter-btn {
+                padding: 6px 14px;
+                font-size: 0.82rem;
+            }
+
+            .project-card {
+                border-radius: 14px;
+            }
+
+            .project-image {
+                height: 160px;
+            }
+
+            .project-image i {
+                font-size: 2.8rem;
+            }
+
+            .project-body {
+                padding: 1.2rem;
+            }
+
+            .project-title {
+                font-size: 1.2rem;
+            }
+
+            .project-description {
+                font-size: 0.85rem;
+            }
+
+            .project-actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                padding: 10px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo" data-aos="zoom-in" data-aos-duration="1500">
+                Tamzidan <span>Mahdiyin</span>
+            </div>
+            <div class="links">
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100"><a href="index.html">Home</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200"><a href="about.html">About</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300"><a href="skill.html">Skills</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400"><a href="service.html">Service</a></div>
+                <div class="link active" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500"><a href="projects.html">Projects</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="600"><a href="contact.html">Contact</a></div>
+            </div>
+        </div>
+        <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
+        <div class="dropdown">
+            <div class="links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="skill.html">Skills</a>
+                <a href="service.html">Service</a>
+                <a href="projects.html" class="active">Projects</a>
+                <a href="contact.html">Contact</a>
+                <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Projects Section -->
+    <div class="projects-container">
+        <div class="projects-content">
+            <!-- Header Section -->
+            <div class="projects-header" data-aos="fade-down" data-aos-duration="1500">
+                <h1>My Projects</h1>
+                <p class="subtitle">Here are some of my recent web development projects</p>
+            </div>
+
+            <!-- Category Filter Buttons -->
+            <div class="filter-container" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="webapp">Web App</button>
+                <button class="filter-btn" data-filter="landing">Landing Page</button>
+                <button class="filter-btn" data-filter="dashboard">Dashboard</button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="projects-grid">
+                <!-- Project 1: E-Commerce Platform -->
+                <div class="project-card" data-category="webapp" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
+                    <div class="project-image gradient-ecommerce">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="project-badge">Web App</span>
+                    </div>
+                    <div class="project-body">
+                        <h3 class="project-title">E-Commerce Platform</h3>
+                        <p class="project-description">A full-featured online shopping platform featuring real-time inventory, secure checkout with Stripe, user authentication, and comprehensive order tracking.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">React</span>
+                            <span class="tech-badge">Node.js</span>
+                            <span class="tech-badge">MongoDB</span>
+                            <span class="tech-badge">Stripe</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="btn-primary" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                            <a href="#" class="btn-secondary" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Task Management App -->
+                <div class="project-card" data-category="webapp" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
+                    <div class="project-image gradient-task">
+                        <i class="fa-solid fa-list-check"></i>
+                        <span class="project-badge">Web App</span>
+                    </div>
+                    <div class="project-body">
+                        <h3 class="project-title">Task Management App</h3>
+                        <p class="project-description">Collaborative productivity application with interactive Kanban boards, drag-and-drop task workflow, real-time sync with Firebase, and team analytics.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Vue.js</span>
+                            <span class="tech-badge">Firebase</span>
+                            <span class="tech-badge">Tailwind CSS</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="btn-primary" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                            <a href="#" class="btn-secondary" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Portfolio Website -->
+                <div class="project-card" data-category="landing" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
+                    <div class="project-image gradient-portfolio">
+                        <i class="fa-solid fa-laptop-code"></i>
+                        <span class="project-badge">Landing Page</span>
+                    </div>
+                    <div class="project-body">
+                        <h3 class="project-title">Portfolio Website</h3>
+                        <p class="project-description">Modern, high-performance personal portfolio showcasing creative design, smooth scroll effects with AOS library, dynamic typography, and responsive UI components.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">HTML</span>
+                            <span class="tech-badge">CSS</span>
+                            <span class="tech-badge">JavaScript</span>
+                            <span class="tech-badge">AOS</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="btn-primary" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                            <a href="#" class="btn-secondary" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Restaurant Landing Page -->
+                <div class="project-card" data-category="landing" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
+                    <div class="project-image gradient-restaurant">
+                        <i class="fa-solid fa-utensils"></i>
+                        <span class="project-badge">Landing Page</span>
+                    </div>
+                    <div class="project-body">
+                        <h3 class="project-title">Restaurant Landing Page</h3>
+                        <p class="project-description">Elegant dining and bistro landing page featuring online table reservations, interactive culinary menus, chef highlights, and customer testimonials.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">HTML</span>
+                            <span class="tech-badge">CSS</span>
+                            <span class="tech-badge">Bootstrap</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="btn-primary" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                            <a href="#" class="btn-secondary" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: Weather Dashboard -->
+                <div class="project-card" data-category="dashboard" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500">
+                    <div class="project-image gradient-weather">
+                        <i class="fa-solid fa-cloud-sun-rain"></i>
+                        <span class="project-badge">Dashboard</span>
+                    </div>
+                    <div class="project-body">
+                        <h3 class="project-title">Weather Dashboard</h3>
+                        <p class="project-description">Real-time meteorological monitoring tool with dynamic temperature trends, multi-day forecasting charts via Chart.js, air quality metrics, and location search.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">React</span>
+                            <span class="tech-badge">OpenWeather API</span>
+                            <span class="tech-badge">Chart.js</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="btn-primary" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                            <a href="#" class="btn-secondary" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6: Blog CMS -->
+                <div class="project-card" data-category="dashboard webapp" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="600">
+                    <div class="project-image gradient-blog">
+                        <i class="fa-solid fa-gauge-high"></i>
+                        <span class="project-badge">Dashboard / CMS</span>
+                    </div>
+                    <div class="project-body">
+                        <h3 class="project-title">Blog CMS</h3>
+                        <p class="project-description">Modern headless content management system complete with markdown editor, analytics dashboard, post scheduling, and PostgreSQL data persistence with Prisma.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Next.js</span>
+                            <span class="tech-badge">PostgreSQL</span>
+                            <span class="tech-badge">Prisma</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="btn-primary" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                            <a href="#" class="btn-secondary" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Source Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AOS JS CDN -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+    <!-- Page Scripts -->
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            offset: 0,
+            duration: 1000
+        });
+
+        // Mobile Hamburger Menu Handlers
+        function hamburg() {
+            const navbar = document.querySelector(".dropdown");
+            navbar.style.transform = "translateY(0px)";
+        }
+
+        function cancel() {
+            const navbar = document.querySelector(".dropdown");
+            navbar.style.transform = "translateY(-500px)";
+        }
+
+        // Project Category Filter Functionality
+        const filterBtns = document.querySelectorAll(".filter-btn");
+        const projectCards = document.querySelectorAll(".project-card");
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                // Update active state on filter buttons
+                filterBtns.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+
+                const filter = btn.getAttribute("data-filter");
+
+                // Filter project cards
+                projectCards.forEach(card => {
+                    const categories = card.getAttribute("data-category").split(" ");
+                    if (filter === "all" || categories.includes(filter)) {
+                        card.classList.remove("hide");
+                    } else {
+                        card.classList.add("hide");
+                    }
+                });
+
+                // Refresh AOS to calculate positions of visible cards
+                setTimeout(() => {
+                    AOS.refresh();
+                }, 100);
+            });
+        });
+    </script>
+</body>
+
+</html>
+<!-- Subscribe Tamzidan Madiyin di YouTube -->

@@ -24,6 +24,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             width: 100%;
             min-height: 100vh;
@@ -72,6 +76,13 @@
             color: white;
             display: none;
             font-size: clamp(2.5rem, 0.5rem + 5vw, 3rem);
+            transition: transform 0.3s ease;
+        }
+
+        .hamburg:hover,
+        .cancel:hover {
+            transform: scale(1.1);
+            color: #38bdf8;
         }
 
         .nav-container .links {
@@ -84,18 +95,35 @@
             margin: 0 20px;
             text-decoration: none;
             font-weight: 550;
-            transition: 0.3s linear;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-container .links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #38bdf8;
+            transition: width 0.3s ease;
         }
 
         .nav-container .links a:hover {
             color: #38bdf8;
-            border-bottom: 2px solid #38bdf8;
         }
 
-        .nav-container .links .active a,
-        .nav-container .links .active {
+        .nav-container .links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-container .links .active a {
             color: #38bdf8;
-            border-bottom: 2px solid #38bdf8;
+        }
+
+        .nav-container .links .active a::after {
+            width: 100%;
         }
 
         /* Dropdown Menu Styles */
@@ -111,7 +139,7 @@
             backdrop-filter: blur(8px) brightness(40%);
             background: rgba(15, 23, 42, 0.9);
             box-shadow: 0 0 20px black;
-            transition: 0.3s ease-in-out;
+            transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .dropdown .links a {
@@ -123,12 +151,12 @@
             align-items: center;
             font-size: 1.1rem;
             font-weight: 550;
-            transition: 0.2s linear;
+            transition: all 0.3s ease;
         }
 
         .dropdown .links a:hover {
-            background-color: #38bdf8;
-            color: #0f172a;
+            background-color: rgba(56, 189, 248, 0.2);
+            color: #38bdf8;
         }
 
         .dropdown .links a.active {
@@ -150,10 +178,10 @@
         .projects-content {
             width: 85%;
             max-width: 1250px;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            border-radius: 24px;
             padding: 3rem;
             color: white;
         }
@@ -168,6 +196,20 @@
             color: #38bdf8;
             text-shadow: 0 0 10px #38bdf8;
             margin-bottom: 0.75rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .projects-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #38bdf8, transparent);
+            border-radius: 2px;
         }
 
         .projects-header .subtitle {
@@ -175,6 +217,7 @@
             font-size: 1.1rem;
             font-weight: 300;
             line-height: 1.5;
+            margin-top: 0.5rem;
         }
 
         /* Filter Buttons Styles */
@@ -188,30 +231,49 @@
         }
 
         .filter-btn {
-            background: rgba(56, 189, 248, 0.1);
+            background: rgba(56, 189, 248, 0.08);
             color: #94a3b8;
-            border: 1px solid rgba(56, 189, 248, 0.25);
+            border: 1px solid rgba(56, 189, 248, 0.2);
             border-radius: 30px;
             padding: 9px 24px;
             font-size: 0.95rem;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             outline: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(56, 189, 248, 0.15);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease;
+        }
+
+        .filter-btn:hover::before {
+            width: 200px;
+            height: 200px;
         }
 
         .filter-btn:hover {
             color: white;
             border-color: #38bdf8;
-            background: rgba(56, 189, 248, 0.2);
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+            box-shadow: 0 0 18px rgba(56, 189, 248, 0.2);
         }
 
         .filter-btn.active {
             background: #0284c7;
             color: white;
             border-color: #38bdf8;
-            box-shadow: 0 0 18px rgba(56, 189, 248, 0.4);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
         }
 
         /* Projects Grid Styles */
@@ -222,23 +284,48 @@
         }
 
         .project-card {
-            background: rgba(56, 189, 248, 0.1);
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            border-radius: 16px;
+            background: rgba(56, 189, 248, 0.06);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            border-radius: 18px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 25px rgba(56, 189, 248, 0.3);
-            border-color: rgba(56, 189, 248, 0.45);
+            transform: translateY(-12px);
+            box-shadow: 0 16px 40px rgba(56, 189, 248, 0.25);
+            border-color: rgba(56, 189, 248, 0.5);
         }
 
         .project-card.hide {
-            display: none !important;
+            opacity: 0;
+            transform: scale(0.8);
+            position: absolute;
+            pointer-events: none;
+            height: 0;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        .project-card.show {
+            animation: cardAppear 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         /* Gradient Placeholder Image Styles */
@@ -252,15 +339,26 @@
             overflow: hidden;
         }
 
+        .project-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+        }
+
         .project-image i {
             font-size: 3.5rem;
             color: #38bdf8;
             text-shadow: 0 0 18px rgba(56, 189, 248, 0.6);
-            transition: transform 0.4s ease;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .project-card:hover .project-image i {
-            transform: scale(1.12);
+            transform: scale(1.15) rotate(5deg);
+            text-shadow: 0 0 30px rgba(56, 189, 248, 0.8);
         }
 
         .gradient-ecommerce {
@@ -297,9 +395,10 @@
             backdrop-filter: blur(5px);
             font-size: 0.75rem;
             font-weight: 600;
-            padding: 4px 10px;
+            padding: 4px 12px;
             border-radius: 20px;
             letter-spacing: 0.5px;
+            z-index: 1;
         }
 
         /* Project Body Styles */
@@ -311,10 +410,15 @@
         }
 
         .project-title {
-            font-size: 1.35rem;
+            font-size: 1.3rem;
             font-weight: 600;
             color: white;
             margin-bottom: 0.6rem;
+            transition: color 0.3s ease;
+        }
+
+        .project-card:hover .project-title {
+            color: #38bdf8;
         }
 
         .project-description {
@@ -330,75 +434,23 @@
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 1.5rem;
         }
 
         .tech-badge {
-            background: rgba(56, 189, 248, 0.15);
+            background: rgba(56, 189, 248, 0.1);
             color: #38bdf8;
-            border: 1px solid rgba(56, 189, 248, 0.3);
+            border: 1px solid rgba(56, 189, 248, 0.25);
             border-radius: 20px;
-            padding: 3px 10px;
+            padding: 4px 12px;
             font-size: 0.78rem;
             font-weight: 500;
             letter-spacing: 0.3px;
-        }
-
-        /* Action Buttons */
-        .project-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: auto;
-        }
-
-        .btn-primary {
-            flex: 1;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            background-color: #0284c7;
-            color: white;
-            padding: 10px 14px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .btn-primary:hover {
-            background-color: #38bdf8;
-            color: #0f172a;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
-        }
-
-        .btn-secondary {
-            flex: 1;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            background-color: transparent;
-            color: #38bdf8;
-            border: 1.5px solid #38bdf8;
-            padding: 8.5px 14px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-secondary:hover {
-            background-color: rgba(56, 189, 248, 0.15);
-            color: white;
-            border-color: #38bdf8;
-            box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+        .project-card:hover .tech-badge {
+            background: rgba(56, 189, 248, 0.18);
+            border-color: rgba(56, 189, 248, 0.4);
         }
 
         /* Responsive Media Queries */
@@ -501,18 +553,6 @@
             .project-description {
                 font-size: 0.85rem;
             }
-
-            .project-actions {
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            .btn-primary,
-            .btn-secondary {
-                width: 100%;
-                padding: 10px;
-                font-size: 0.85rem;
-            }
         }
     </style>
 </head>
@@ -581,10 +621,6 @@
                             <span class="tech-badge">MongoDB</span>
                             <span class="tech-badge">Stripe</span>
                         </div>
-                        <div class="project-actions">
-                            <a href="#" class="btn-primary" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
-                            <a href="#" class="btn-secondary" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Source Code</a>
-                        </div>
                     </div>
                 </div>
 
@@ -601,10 +637,6 @@
                             <span class="tech-badge">Vue.js</span>
                             <span class="tech-badge">Firebase</span>
                             <span class="tech-badge">Tailwind CSS</span>
-                        </div>
-                        <div class="project-actions">
-                            <a href="#" class="btn-primary" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
-                            <a href="#" class="btn-secondary" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Source Code</a>
                         </div>
                     </div>
                 </div>
@@ -624,10 +656,6 @@
                             <span class="tech-badge">JavaScript</span>
                             <span class="tech-badge">AOS</span>
                         </div>
-                        <div class="project-actions">
-                            <a href="#" class="btn-primary" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
-                            <a href="#" class="btn-secondary" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Source Code</a>
-                        </div>
                     </div>
                 </div>
 
@@ -644,10 +672,6 @@
                             <span class="tech-badge">HTML</span>
                             <span class="tech-badge">CSS</span>
                             <span class="tech-badge">Bootstrap</span>
-                        </div>
-                        <div class="project-actions">
-                            <a href="#" class="btn-primary" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
-                            <a href="#" class="btn-secondary" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Source Code</a>
                         </div>
                     </div>
                 </div>
@@ -666,10 +690,6 @@
                             <span class="tech-badge">OpenWeather API</span>
                             <span class="tech-badge">Chart.js</span>
                         </div>
-                        <div class="project-actions">
-                            <a href="#" class="btn-primary" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
-                            <a href="#" class="btn-secondary" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Source Code</a>
-                        </div>
                     </div>
                 </div>
 
@@ -687,10 +707,6 @@
                             <span class="tech-badge">PostgreSQL</span>
                             <span class="tech-badge">Prisma</span>
                         </div>
-                        <div class="project-actions">
-                            <a href="#" class="btn-primary" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
-                            <a href="#" class="btn-secondary" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Source Code</a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -705,7 +721,8 @@
         // Initialize AOS animations
         AOS.init({
             offset: 0,
-            duration: 1000
+            duration: 1000,
+            once: true
         });
 
         // Mobile Hamburger Menu Handlers
@@ -719,7 +736,7 @@
             navbar.style.transform = "translateY(-500px)";
         }
 
-        // Project Category Filter Functionality
+        // Project Category Filter Functionality with smooth animations
         const filterBtns = document.querySelectorAll(".filter-btn");
         const projectCards = document.querySelectorAll(".project-card");
 
@@ -731,12 +748,16 @@
 
                 const filter = btn.getAttribute("data-filter");
 
-                // Filter project cards
-                projectCards.forEach(card => {
+                // Filter project cards with animation
+                projectCards.forEach((card, index) => {
                     const categories = card.getAttribute("data-category").split(" ");
+                    
                     if (filter === "all" || categories.includes(filter)) {
                         card.classList.remove("hide");
+                        card.classList.add("show");
+                        card.style.animationDelay = `${index * 0.1}s`;
                     } else {
+                        card.classList.remove("show");
                         card.classList.add("hide");
                     }
                 });

@@ -222,6 +222,78 @@
             text-align: center;
         }
 
+        .skills-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #38bdf8, transparent);
+            border-radius: 2px;
+        }
+
+        .skills-header h1 {
+            position: relative;
+            display: inline-block;
+        }
+
+        .skills-header p {
+            color: #94a3b8;
+            font-size: 1rem;
+            margin-top: 0.8rem;
+        }
+
+        /* Tech badge grid - alternative view below progress bars */
+        .tech-badges-section {
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(56, 189, 248, 0.15);
+        }
+
+        .tech-badges-section h2 {
+            color: #38bdf8;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .tech-badges-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .tech-badge-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 10px 18px;
+            border-radius: 30px;
+            color: #e2e8f0;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .tech-badge-item:hover {
+            background: rgba(56, 189, 248, 0.18);
+            border-color: #38bdf8;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.25);
+            color: #38bdf8;
+        }
+
+        .tech-badge-item i {
+            color: #38bdf8;
+            font-size: 1rem;
+        }
+
         @media (max-width: 884px) {
             .skills-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -232,7 +304,6 @@
                 top: 16px;
                 left: 15px;
                 font-size: 1.5rem;
-                /* z-index: 1001; */
             }
 
             .nav-container .links {
@@ -241,7 +312,6 @@
 
             .hamburg, .cancel {
                 display: block;
-                /* z-index: 1001; */
             }
         }
 
@@ -273,6 +343,11 @@
 
             .skill-icon {
                 font-size: 1.5rem;
+            }
+
+            .tech-badge-item {
+                padding: 8px 14px;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -312,36 +387,55 @@
         <div class="skills-content">
             <div class="skills-header" data-aos="fade-down" data-aos-duration="1500">
                 <h1>My Skills</h1>
+                <p>Technologies and tools I work with on a daily basis</p>
             </div>
             <div class="skills-grid">
                 <!-- Frontend Development -->
                 <div class="skill-category" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
                     <div class="skill-icon">
-                        <i class="fa fa-car"></i>
+                        <i class="fas fa-laptop-code"></i>
                     </div>
                     <h2>Frontend Development</h2>
                     <div class="skill-list">
                         <div class="skill-item">
                             <div class="skill-info">
-                                <h3>HTML</h3>
-                                <span>10%</span>
+                                <h3>HTML5</h3>
+                                <span>90%</span>
                             </div>
                             <div class="progress-bar">
-                                <div class="progress" style="width: 10%"></div>
+                                <div class="progress" style="width: 90%"></div>
                             </div>
                         </div>
                         <div class="skill-item">
                             <div class="skill-info">
-                                <h3>CSS</h3>
-                                <span>50%</span>
+                                <h3>CSS3</h3>
+                                <span>85%</span>
                             </div>
                             <div class="progress-bar">
-                                <div class="progress" style="width: 50%"></div>
+                                <div class="progress" style="width: 85%"></div>
                             </div>
                         </div>
                         <div class="skill-item">
                             <div class="skill-info">
                                 <h3>JavaScript</h3>
+                                <span>80%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <h3>React</h3>
+                                <span>70%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <h3>Bootstrap</h3>
                                 <span>85%</span>
                             </div>
                             <div class="progress-bar">
@@ -354,7 +448,7 @@
                 <!-- Backend Development -->
                 <div class="skill-category" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
                     <div class="skill-icon">
-                        <i class="fas fa-database"></i>
+                        <i class="fas fa-server"></i>
                     </div>
                     <h2>Backend Development</h2>
                     <div class="skill-list">
@@ -369,7 +463,16 @@
                         </div>
                         <div class="skill-item">
                             <div class="skill-info">
-                                <h3>Node.js</h3>
+                                <h3>Laravel</h3>
+                                <span>85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <h3>MySQL</h3>
                                 <span>82%</span>
                             </div>
                             <div class="progress-bar">
@@ -378,7 +481,7 @@
                         </div>
                         <div class="skill-item">
                             <div class="skill-info">
-                                <h3>Python</h3>
+                                <h3>PostgreSQL</h3>
                                 <span>75%</span>
                             </div>
                             <div class="progress-bar">
@@ -388,25 +491,25 @@
                     </div>
                 </div>
 
-                <!-- Design Tools -->
+                <!-- DevOps & Tools -->
                 <div class="skill-category" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500">
                     <div class="skill-icon">
-                        <i class="fas fa-paint-brush"></i>
+                        <i class="fas fa-tools"></i>
                     </div>
-                    <h2>Design Tools</h2>
+                    <h2>DevOps & Tools</h2>
                     <div class="skill-list">
                         <div class="skill-item">
                             <div class="skill-info">
-                                <h3>Photoshop</h3>
-                                <span>92%</span>
+                                <h3>Docker</h3>
+                                <span>70%</span>
                             </div>
                             <div class="progress-bar">
-                                <div class="progress" style="width: 92%"></div>
+                                <div class="progress" style="width: 70%"></div>
                             </div>
                         </div>
                         <div class="skill-item">
                             <div class="skill-info">
-                                <h3>Figma</h3>
+                                <h3>Git & GitHub</h3>
                                 <span>85%</span>
                             </div>
                             <div class="progress-bar">
@@ -415,7 +518,16 @@
                         </div>
                         <div class="skill-item">
                             <div class="skill-info">
-                                <h3>Adobe XD</h3>
+                                <h3>Postman</h3>
+                                <span>80%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <h3>Vercel / Hostinger</h3>
                                 <span>78%</span>
                             </div>
                             <div class="progress-bar">
@@ -423,6 +535,36 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- All Tech Badges -->
+            <div class="tech-badges-section" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
+                <h2>All Technologies</h2>
+                <div class="tech-badges-grid">
+                    <div class="tech-badge-item"><i class="fa-brands fa-html5"></i> HTML5</div>
+                    <div class="tech-badge-item"><i class="fa-brands fa-css3-alt"></i> CSS3</div>
+                    <div class="tech-badge-item"><i class="fa-brands fa-js"></i> JavaScript</div>
+                    <div class="tech-badge-item"><i class="fa-brands fa-php"></i> PHP</div>
+                    <div class="tech-badge-item"><i class="fa-solid fa-mountain"></i> Alpine.js</div>
+                    <div class="tech-badge-item"><i class="fa-brands fa-bootstrap"></i> Bootstrap</div>
+                    <div class="tech-badge-item"><i class="fa-brands fa-docker"></i> Docker</div>
+                    <div class="tech-badge-item"><i class="fa-brands fa-github"></i> GitHub Pages</div>
+                    <div class="tech-badge-item"><i class="fa-brands fa-laravel"></i> Laravel</div>
+                    <div class="tech-badge-item"><i class="fa-brands fa-markdown"></i> Markdown</div>
+                    <div class="tech-badge-item"><i class="fa-brands fa-npm"></i> NPM</div>
+                    <div class="tech-badge-item"><i class="fa-solid fa-paper-plane"></i> Postman</div>
+                    <div class="tech-badge-item"><i class="fa-brands fa-react"></i> React</div>
+                    <div class="tech-badge-item"><i class="fa-solid fa-database"></i> PostgreSQL</div>
+                    <div class="tech-badge-item"><i class="fa-solid fa-database"></i> MySQL</div>
+                    <div class="tech-badge-item"><i class="fa-solid fa-table"></i> PhpMyAdmin</div>
+                    <div class="tech-badge-item"><i class="fa-solid fa-rocket"></i> Vercel</div>
+                    <div class="tech-badge-item"><i class="fa-solid fa-globe"></i> Hostinger</div>
+                    <div class="tech-badge-item"><i class="fa-solid fa-robot"></i> Google Gemini</div>
+                    <div class="tech-badge-item"><i class="fa-solid fa-brain"></i> Claude AI</div>
+                    <div class="tech-badge-item"><i class="fa-solid fa-camera"></i> Adobe Lightroom</div>
+                    <div class="tech-badge-item"><i class="fa-solid fa-pen-nib"></i> Canva</div>
+                    <div class="tech-badge-item"><i class="fa-brands fa-figma"></i> Figma</div>
                 </div>
             </div>
         </div>

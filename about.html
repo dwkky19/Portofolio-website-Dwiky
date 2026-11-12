@@ -97,6 +97,7 @@
             display: none;
             font-size: clamp(2.5rem, 0.5rem + 5vw, 3rem);
             transition: transform 0.3s ease;
+            z-index: 200;
         }
 
         .hamburg:hover,
@@ -502,6 +503,332 @@
             font-weight: 500;
         }
 
+        /* ===== Experience Section Enhanced Styles ===== */
+        .experience-section {
+            margin-bottom: 3rem;
+        }
+
+        .experience-section .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #38bdf8;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .experience-section .section-label i {
+            font-size: 0.7rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #38bdf8, rgba(56, 189, 248, 0.1));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+            padding: 0;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -33px;
+            top: 6px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #0f172a;
+            border: 3px solid #38bdf8;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+            z-index: 2;
+        }
+
+        .timeline-item:first-child .timeline-dot {
+            background: #38bdf8;
+            animation: pulseTimeline 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseTimeline {
+            0%, 100% { box-shadow: 0 0 12px rgba(56, 189, 248, 0.5); }
+            50% { box-shadow: 0 0 22px rgba(56, 189, 248, 0.8); }
+        }
+
+        .timeline-card {
+            background: rgba(56, 189, 248, 0.06);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            border-radius: 16px;
+            padding: 1.8rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .timeline-card:hover {
+            transform: translateX(8px);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 8px 30px rgba(56, 189, 248, 0.15);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .timeline-header h3 {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .timeline-badge {
+            background: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .timeline-company {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #94a3b8;
+            font-size: 0.92rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-company i {
+            color: #38bdf8;
+            font-size: 0.85rem;
+        }
+
+        .timeline-description {
+            color: #cbd5e1;
+            font-size: 0.92rem;
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+        }
+
+        /* Project highlights inside experience */
+        .project-highlights {
+            margin-top: 1rem;
+        }
+
+        .project-highlight {
+            display: flex;
+            gap: 12px;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 12px;
+            margin-bottom: 0.8rem;
+            border-left: 3px solid rgba(56, 189, 248, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .project-highlight:hover {
+            background: rgba(0, 0, 0, 0.35);
+            border-left-color: #38bdf8;
+        }
+
+        .project-highlight:last-child {
+            margin-bottom: 0;
+        }
+
+        .project-highlight-icon {
+            flex-shrink: 0;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: rgba(56, 189, 248, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #38bdf8;
+            font-size: 1rem;
+        }
+
+        .project-highlight-info h4 {
+            color: white;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .project-highlight-info p {
+            color: #94a3b8;
+            font-size: 0.82rem;
+            line-height: 1.5;
+            margin-bottom: 0.6rem;
+        }
+
+        .project-highlight-info .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .tech-tags .tag {
+            background: rgba(56, 189, 248, 0.1);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.72rem;
+            font-weight: 500;
+        }
+
+        /* Skills Grid Section */
+        .skills-section {
+            margin-top: 1rem;
+        }
+
+        .skills-section .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #38bdf8;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .skill-category-row {
+            margin-bottom: 2rem;
+        }
+
+        .skill-category-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .skill-cat-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .skill-cat-label i {
+            color: #38bdf8;
+            font-size: 1.1rem;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(56, 189, 248, 0.1);
+            border-radius: 10px;
+        }
+
+        .skill-cat-label h4 {
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .skill-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding-left: 46px;
+        }
+
+        .skill-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 8px 16px;
+            border-radius: 25px;
+            color: #e2e8f0;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .skill-badge:hover {
+            background: rgba(56, 189, 248, 0.18);
+            border-color: #38bdf8;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(56, 189, 248, 0.2);
+            color: #38bdf8;
+        }
+
+        .skill-badge i {
+            color: #38bdf8;
+            font-size: 0.9rem;
+        }
+
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.3), transparent);
+            margin: 2.5rem 0;
+        }
+
+        @media (max-width: 640px) {
+            .timeline {
+                padding-left: 30px;
+            }
+
+            .timeline::before {
+                left: 10px;
+            }
+
+            .timeline-dot {
+                left: -26px;
+                width: 12px;
+                height: 12px;
+            }
+
+            .timeline-card {
+                padding: 1.2rem;
+            }
+
+            .timeline-header {
+                flex-direction: column;
+            }
+
+            .project-highlight {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .skill-badges {
+                padding-left: 0;
+            }
+        }
+
         /* Fade transition for content */
         .about-content {
             animation: fadeInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -714,11 +1041,28 @@
                     <a href="about.html" class="back-button">
                         <i class="fas fa-arrow-left"></i> Back
                     </a>
-                    <div class="about-header" data-aos="fade-down" data-aos-duration="1500">
+                    <div class="about-header">
                         <h1>My Experience</h1>
                     </div>
-                    <div class="content-grid">
-                        ${generateExperienceCards()}
+
+                    <!-- Experience Timeline -->
+                    <div class="experience-section">
+                        <div class="section-label">
+                            <i class="fas fa-briefcase"></i> Professional Experience
+                        </div>
+                        <div class="timeline">
+                            ${generateExperienceCards()}
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <!-- Tech Skills -->
+                    <div class="skills-section">
+                        <div class="section-label">
+                            <i class="fas fa-code"></i> Tech Stack & Tools
+                        </div>
+                        ${generateSkillBadges()}
                     </div>
                 `;
                     aboutContent.style.opacity = '1';
@@ -755,45 +1099,160 @@
             function generateExperienceCards() {
                 const experiences = [
                     {
-                        title: "Senior Web Developer",
-                        company: "Tech Solutions Inc.",
-                        period: "2021 - Present",
-                        description: "Leading frontend development team and implementing modern web solutions"
-                    },
-                    {
-                        title: "Frontend Developer",
-                        company: "Digital Agency",
-                        period: "2019 - 2021",
-                        description: "Developed responsive websites and web applications"
+                        title: "Web Developer (Freelance)",
+                        company: "Independent Projects, Banten",
+                        period: "2023 - Present",
+                        description: "Merancang dan mengembangkan berbagai aplikasi web untuk kebutuhan bisnis lokal, mulai dari sistem keuangan hingga aplikasi pemesanan dengan integrasi payment gateway.",
+                        projects: [
+                            {
+                                name: "Sistem Keuangan & Penagihan",
+                                client: "CV Ucok Marpaung",
+                                desc: "Aplikasi web dengan fitur peringatan dini (early warning system) untuk mengoptimalkan efisiensi dan meminimalkan keterlambatan pembayaran.",
+                                icon: "fa-file-invoice-dollar",
+                                techs: ["PHP", "Laravel", "MySQL", "Bootstrap"]
+                            },
+                            {
+                                name: "Sistem Point of Sale / POS",
+                                client: "Toko JK, Pasar Jati Kota Tangerang",
+                                desc: "Sistem kasir berbasis web untuk mempermudah pencatatan transaksi secara real-time dan manajemen inventaris/stok barang.",
+                                icon: "fa-cash-register",
+                                techs: ["PHP", "Laravel", "MySQL", "JavaScript"]
+                            },
+                            {
+                                name: "Aplikasi Pemesanan & Payment Gateway",
+                                client: "Cafe N",
+                                desc: "Aplikasi pemesanan berbasis web yang terintegrasi langsung dengan payment gateway untuk memfasilitasi transaksi pembayaran pelanggan secara otomatis, cepat, dan aman.",
+                                icon: "fa-credit-card",
+                                techs: ["PHP", "Laravel", "MySQL", "Midtrans API"]
+                            }
+                        ]
                     }
                 ];
 
                 return experiences.map((exp, index) => `
-                <div class="content-card" data-aos="fade-up" data-aos-delay="${index * 150}">
-                    <div class="card-info">
-                        <h3>${exp.title}</h3>
-                        <h4>${exp.company}</h4>
-                        <p class="period">${exp.period}</p>
-                        <p>${exp.description}</p>
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="${index * 200}">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <h3>${exp.title}</h3>
+                            <span class="timeline-badge">${exp.period}</span>
+                        </div>
+                        <div class="timeline-company">
+                            <i class="fas fa-map-marker-alt"></i>
+                            ${exp.company}
+                        </div>
+                        <p class="timeline-description">${exp.description}</p>
+                        <div class="project-highlights">
+                            ${exp.projects.map(proj => `
+                            <div class="project-highlight">
+                                <div class="project-highlight-icon">
+                                    <i class="fas ${proj.icon}"></i>
+                                </div>
+                                <div class="project-highlight-info">
+                                    <h4>${proj.name}</h4>
+                                    <p>${proj.client} — ${proj.desc}</p>
+                                    <div class="tech-tags">
+                                        ${proj.techs.map(t => `<span class="tag">${t}</span>`).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                            `).join('')}
+                        </div>
                     </div>
                 </div>
             `).join('');
+            }
+
+            // Fungsi pembantu untuk menghasilkan skill badges
+            function generateSkillBadges() {
+                const categories = [
+                    {
+                        label: "Frontend",
+                        icon: "fa-laptop-code",
+                        skills: [
+                            { name: "HTML5", icon: "fa-brands fa-html5" },
+                            { name: "CSS3", icon: "fa-brands fa-css3-alt" },
+                            { name: "JavaScript", icon: "fa-brands fa-js" },
+                            { name: "React", icon: "fa-brands fa-react" },
+                            { name: "Alpine.js", icon: "fa-solid fa-mountain" },
+                            { name: "Bootstrap", icon: "fa-brands fa-bootstrap" }
+                        ]
+                    },
+                    {
+                        label: "Backend & Database",
+                        icon: "fa-server",
+                        skills: [
+                            { name: "PHP", icon: "fa-brands fa-php" },
+                            { name: "Laravel", icon: "fa-brands fa-laravel" },
+                            { name: "MySQL", icon: "fa-solid fa-database" },
+                            { name: "PostgreSQL", icon: "fa-solid fa-database" },
+                            { name: "PhpMyAdmin", icon: "fa-solid fa-table" }
+                        ]
+                    },
+                    {
+                        label: "DevOps & Tools",
+                        icon: "fa-tools",
+                        skills: [
+                            { name: "Docker", icon: "fa-brands fa-docker" },
+                            { name: "GitHub Pages", icon: "fa-brands fa-github" },
+                            { name: "Vercel", icon: "fa-solid fa-rocket" },
+                            { name: "Hostinger", icon: "fa-solid fa-globe" },
+                            { name: "NPM", icon: "fa-brands fa-npm" },
+                            { name: "Postman", icon: "fa-solid fa-paper-plane" },
+                            { name: "Markdown", icon: "fa-brands fa-markdown" }
+                        ]
+                    },
+                    {
+                        label: "Design & AI",
+                        icon: "fa-palette",
+                        skills: [
+                            { name: "Figma", icon: "fa-brands fa-figma" },
+                            { name: "Canva", icon: "fa-solid fa-pen-nib" },
+                            { name: "Adobe Lightroom", icon: "fa-solid fa-camera" },
+                            { name: "Google Gemini", icon: "fa-solid fa-robot" },
+                            { name: "Claude AI", icon: "fa-solid fa-brain" }
+                        ]
+                    }
+                ];
+
+                return categories.map(cat => `
+                    <div class="skill-category-row">
+                        <div class="skill-cat-label">
+                            <i class="fas ${cat.icon}"></i>
+                            <h4>${cat.label}</h4>
+                        </div>
+                        <div class="skill-badges">
+                            ${cat.skills.map(s => `
+                                <div class="skill-badge">
+                                    <i class="${s.icon}"></i>
+                                    ${s.name}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `).join('');
             }
 
             // Fungsi pembantu untuk menghasilkan kartu client
             function generateClientCards() {
                 const clients = [
                     {
-                        name: "Ell Udin",
-                        company: "Innovation Corp",
+                        name: "CV Ucok Marpaung",
+                        company: "Sistem Keuangan & Penagihan",
                         image: "img/zoro.jpg",
-                        testimonial: "Outstanding work on our company website redesign!"
+                        testimonial: "Sistem keuangan yang dibangun sangat membantu kami dalam memantau penagihan dan mengurangi keterlambatan pembayaran secara signifikan."
                     },
                     {
-                        name: "Ell Ucup",
-                        company: "Tech Startup",
+                        name: "Toko JK",
+                        company: "Pasar Jati, Kota Tangerang",
                         image: "img/zoro.jpg",
-                        testimonial: "Delivered our app ahead of schedule with excellent quality"
+                        testimonial: "Sistem POS nya sangat mudah digunakan, pencatatan transaksi jadi lebih cepat dan akurat. Stok barang juga terkontrol dengan baik."
+                    },
+                    {
+                        name: "Cafe N",
+                        company: "Aplikasi Pemesanan Online",
+                        image: "img/zoro.jpg",
+                        testimonial: "Aplikasi pemesanan dengan payment gateway sangat memudahkan pelanggan kami. Transaksi jadi lebih cepat dan aman!"
                     }
                 ];
 

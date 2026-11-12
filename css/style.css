@@ -11,15 +11,20 @@
 
 body {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-image: url("../img/background.jpg");
-  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow-x: hidden;
 }
 
 nav {
   width: 100%;
   height: 10vh;
   position: sticky;
+  top: 0;
+  z-index: 50;
 }
 
 .nav-container {
@@ -52,6 +57,7 @@ nav {
   color: white;
   display: none;
   font-size: clamp(2.5rem, 0.5rem + 5vw, 3rem);
+  z-index: 200;
 }
 
 .nav-container .links {
@@ -77,35 +83,65 @@ nav {
   border-bottom: 2px solid #38bdf8;
 }
 
+/* ===== Dropdown Mobile Menu ===== */
 .dropdown {
-  z-index: 100;
-  position: absolute;
+  z-index: 150;
+  position: fixed;
   top: 0;
-  transform: translateY(-500px);
+  left: 0;
+  transform: translateY(-100%);
   width: 100%;
   height: auto;
-  backdrop-filter: blur(4px) brightness(40%);
-  box-shadow: 0 0 20px black;
-  transition: 0.2s linear;
+  backdrop-filter: blur(12px) brightness(30%);
+  -webkit-backdrop-filter: blur(12px) brightness(30%);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.dropdown .links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 }
 
 .dropdown .links a {
   display: flex;
   color: white;
   text-decoration: none;
-  padding: 15px 0;
+  padding: 14px 0;
+  width: 100%;
   justify-content: center;
   align-items: center;
+  font-size: 1.1rem;
+  font-weight: 500;
   transition: 0.2s linear;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dropdown .links a:last-of-type {
+  border-bottom: none;
 }
 
 .dropdown .links a:hover {
-  background-color: #38bdf8;
+  background-color: rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+}
+
+.dropdown .cancel {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  display: block;
+  font-size: 2rem;
+  z-index: 200;
 }
 
 section {
   width: 100%;
-  height: 90vh;
+  min-height: 90vh;
 }
 
 .main-container {
@@ -114,6 +150,7 @@ section {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  min-height: 90vh;
 }
 
 .main-container .content {
@@ -145,8 +182,15 @@ section {
 }
 
 .content p {
-  font-size: clamp(0, 4rem, 0.2rem + 9vw, 1rem);
+  font-size: clamp(0.75rem, 0.2rem + 2.5vw, 1rem);
   margin: 10px 0;
+  line-height: 1.6;
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .social-links i {
@@ -159,7 +203,7 @@ section {
   border: 0.2rem solid #38bdf8;
   border-radius: 50%;
   color: #38bdf8;
-  margin: 0 15px;
+  margin: 0;
   font-size: 1.5rem;
   transition: 0.2s linear;
 }
@@ -175,7 +219,8 @@ section {
 .content button {
   width: 50%;
   height: 6vh;
-  margin: 30px;
+  min-height: 44px;
+  margin: 30px 0;
   background-color: #0284c7;
   color: white;
   border: none;
@@ -184,6 +229,7 @@ section {
   font-weight: 700;
   border-radius: 5px;
   transition: 0.2s linear;
+  cursor: pointer;
 }
 
 .content button:hover {
@@ -201,11 +247,13 @@ section {
   border-radius: 100%;
   overflow: hidden;
   box-shadow: 0 0 50px #38bdf8;
+  flex-shrink: 0;
 }
 
 .main-container .image img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 .main-container .image:hover {
@@ -225,56 +273,166 @@ section {
   }
 }
 
+/* ===== Tablet & Small Laptop (≤ 884px) ===== */
 @media (max-width: 884px) {
+  body {
+    overflow-y: auto;
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 60px;
+    z-index: 50;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
   nav .logo {
     position: absolute;
-    top: 16px;
+    top: 50%;
     left: 15px;
-    font-size: 1.5rem;
+    transform: translateY(-50%);
+    font-size: 1.3rem;
+  }
+
+  .hamburg {
+    display: block;
+    position: fixed;
+    top: 12px;
+    right: 15px;
+    z-index: 200;
+  }
+
+  section {
+    padding-top: 60px;
   }
 
   .main-container {
-    display: flex;
     flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    min-height: calc(100vh - 60px);
   }
 
   .nav-container .links {
     display: none;
   }
 
-  .hamburg,
-  .cancel {
-    display: block;
+  .main-container .content {
+    width: 90%;
+    text-align: center;
   }
 
-  .main-container .content {
-    width: 80%;
+  .social-links {
+    justify-content: center;
   }
+
   .social-links i {
     width: 2.5rem;
     height: 2.5rem;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+  }
+
+  .content button {
+    width: 60%;
+    margin: 15px auto;
+    display: block;
+  }
+
+  .content .btn {
+    display: flex;
+    justify-content: center;
   }
 
   .main-container .image {
-    z-index: -1;
-    width: 50%;
-    height: 80%;
+    width: 45vw;
+    height: 45vw;
+    max-width: 300px;
+    max-height: 300px;
   }
 }
 
-@media (max-width: 440px) {
+/* ===== Mobile Phone (≤ 480px) ===== */
+@media (max-width: 480px) {
+  nav .logo {
+    font-size: 1.1rem;
+  }
+
+  .main-container {
+    gap: 15px;
+    padding: 15px;
+  }
+
   .main-container .image {
-    width: 60%;
-    height: 30%;
+    width: 55vw;
+    height: 55vw;
+    max-width: 240px;
+    max-height: 240px;
   }
 
   .main-container .content {
-    width: 80%;
+    width: 92%;
   }
 
-  .main-container button {
-    margin-top: 15px;
+  .content h1 {
+    font-size: clamp(1.1rem, 0.8rem + 3vw, 1.5rem);
+  }
+
+  .content .typewriter {
+    font-size: clamp(1.2rem, 1rem + 3vw, 1.8rem);
+  }
+
+  .content p {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .social-links i {
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 1.1rem;
+  }
+
+  .content button {
+    width: 70%;
+    font-size: 100%;
+    margin: 10px auto;
+  }
+}
+
+/* ===== Very Small Screens (≤ 360px) ===== */
+@media (max-width: 360px) {
+  nav .logo {
+    font-size: 1rem;
+  }
+
+  .main-container .image {
+    width: 50vw;
+    height: 50vw;
+    max-width: 180px;
+    max-height: 180px;
+  }
+
+  .content h1 {
+    font-size: 1rem;
+  }
+
+  .content .typewriter {
+    font-size: 1.2rem;
+  }
+
+  .content p {
+    font-size: 0.75rem;
+  }
+
+  .content button {
+    width: 80%;
+    font-size: 90%;
   }
 }
 /* Subscrbe YouTube Tamzidan Mahdiyin */
